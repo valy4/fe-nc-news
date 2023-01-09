@@ -6,7 +6,6 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* margin-top: 50px; */
   height: 100px;
   background-color: #72195a;
 }
@@ -31,4 +30,7 @@ h1 {
 .Votes {
   text-align: right;
   border-color: #72195a;
+}
+.Loading_message {
+  text-align: center;
 }
