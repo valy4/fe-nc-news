@@ -1,18 +1,34 @@
-.App {
-  text-align: center;
+h1 {
+  margin: 0;
+  color: #c6d8ff;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App_header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* margin-top: 50px; */
+  height: 100px;
+  background-color: #72195a;
+}
+.Main {
+  margin: 100px;
+}
+.Article_card {
+  display: flex;
+  justify-content: space-between;
+}
+.Article_card_list {
+  list-style-type: none;
+}
+.Select_dropdown {
+  height: 30%;
+  width: 150px;
+  color: #72195a;
+  font-size: large;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.Votes {
+  text-align: right;
+  border-color: #72195a;
 }
