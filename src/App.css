@@ -2,6 +2,9 @@ h1 {
   margin: 0;
   color: #c6d8ff;
 }
+ul {
+  list-style-type: none;
+}
 
 .App_header {
   display: flex;
@@ -38,9 +41,23 @@ h1 {
 .Article_main {
   margin: 100px;
 }
+.Article_section {
+  color: #6b5ca5;
+}
 .Article_author {
   text-align: end;
 }
 .Article_votes {
   text-align: end;
+}
+.Comment_date {
+  text-align: end;
+}
+.Comment_card {
+  margin-top: 50px;
+}
+.Comment_author_votes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
