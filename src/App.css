@@ -2,6 +2,7 @@ h1 {
   margin: 0;
   color: #c6d8ff;
 }
+
 .App_header {
   display: flex;
   justify-content: space-around;
@@ -33,4 +34,13 @@ h1 {
 }
 .Loading_message {
   text-align: center;
+}
+.Article_main {
+  margin: 100px;
+}
+.Article_author {
+  text-align: end;
+}
+.Article_votes {
+  text-align: end;
 }
