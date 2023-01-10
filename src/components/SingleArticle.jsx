@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as Api from "../utils/newsApi";
 import { CommentCard } from "./CommentCard";
+import icon from "../assets/8081.jpg"
 
 export const SingleArticle = () => {
   const { article_id } = useParams();
@@ -53,6 +54,13 @@ export const SingleArticle = () => {
           );
         })}
       </section>
+      <h3> {singleArticle.title}</h3>
+      <h3 className="Article_author"> {singleArticle.author}</h3>
+      <article>{singleArticle.body}</article>
+      <button className="Btn_like">Like <img src={icon} style={{width:"25px"}}/> </button>
+      <p className="Article_votes">
+        Votes: <b>{singleArticle.votes}</b>
+      </p>
     </main>
   );
 };
