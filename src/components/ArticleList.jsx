@@ -22,8 +22,8 @@ export const ArticleList = () => {
       {articleList.map((article) => {
         return (
           <ul>
-            <li className="Article_card_list">
-              <ArticleCard title={article.title} votes={article.votes} />
+            <li key={article.article_id} className="Article_card_list">
+              <ArticleCard  article_id = {article.article_id} title={article.title} votes={article.votes} />
             </li>
           </ul>
         );
