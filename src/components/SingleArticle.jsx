@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import * as Api from "../utils/newsApi";
 import { CommentCard } from "./CommentCard";
 
+import { UpdateVotes } from "./UpdateVotes";
+
 export const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +26,8 @@ export const SingleArticle = () => {
     });
   }, [article_id]);
 
+ 
+
   if (isLoading) return <h3 className="Loading_message">Loading...</h3>;
 
   return (
@@ -31,18 +36,15 @@ export const SingleArticle = () => {
         <h3> {singleArticle.title}</h3>
         <h3 className="Article_author"> {singleArticle.author}</h3>
         <article>{singleArticle.body}</article>
-        <p className="Article_votes">
-          Votes: <b>{singleArticle.votes}</b>
-        </p>
+        <UpdateVotes singleArticle={singleArticle} article_id={article_id}/>
       </section>
       <section>
         {comments.map((comment) => {
           const newDate = comment.created_at.split("T")[0];
           return (
-            <ul >
+            <ul>
               <li key={comment.comment_id}>
                 <CommentCard
-                
                   author={comment.author}
                   body={comment.body}
                   votes={comment.votes}
