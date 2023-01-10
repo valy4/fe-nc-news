@@ -17,7 +17,16 @@ export const getArticlesById = (article_id) => {
 };
 
 export const getComments = (article_id) => {
-return newsApi.get(`/api/articles/${article_id}/comments`).then((response) => {
-  return response.data
-})
-}
+  return newsApi
+    .get(`/api/articles/${article_id}/comments`)
+    .then((response) => {
+      return response.data;
+    });
+};
+export const patchVotes = (article_id, increment) => {
+  const patchBody = {
+    inc_votes: increment,
+  };
+  return newsApi
+    .patch(`/api/articles/${article_id}`, patchBody)
+};
