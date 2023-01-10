@@ -19,7 +19,7 @@ export const UpdateVotes = ({ singleArticle, article_id }) => {
 
   const handleDislikeClickVote = () => {
     setUpVote((currVote) => currVote - 1);
-    Api.patchVotes(article_id, 1).catch((err) => {
+    Api.patchVotes(article_id, -1).catch((err) => {
       if(err){
         setUpVote((currVote) => currVote + 1);
         return <p>Failed...</p>
