@@ -27,6 +27,13 @@ export const patchVotes = (article_id, increment) => {
   const patchBody = {
     inc_votes: increment,
   };
-  return newsApi
-    .patch(`/api/articles/${article_id}`, patchBody)
+  return newsApi.patch(`/api/articles/${article_id}`, patchBody);
+};
+export const postComment = (article_id, body) => {
+  const postBody = {
+    username: "jessjelly",
+    body: body ,
+  };
+
+  return newsApi.post(`/api/articles/${article_id}/comments`, postBody);
 };

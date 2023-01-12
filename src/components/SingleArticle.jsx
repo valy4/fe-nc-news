@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as Api from "../utils/newsApi";
 import { CommentCard } from "./CommentCard";
-
+import { AddNewComment } from "./AddNewComment";
 import { UpdateVotes } from "./UpdateVotes";
 
 export const SingleArticle = () => {
@@ -10,7 +10,6 @@ export const SingleArticle = () => {
   const [singleArticle, setSingleArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,8 +25,6 @@ export const SingleArticle = () => {
     });
   }, [article_id]);
 
- 
-
   if (isLoading) return <h3 className="Loading_message">Loading...</h3>;
 
   return (
@@ -36,13 +33,20 @@ export const SingleArticle = () => {
         <h3> {singleArticle.title}</h3>
         <h3 className="Article_author"> {singleArticle.author}</h3>
         <article>{singleArticle.body}</article>
-        <UpdateVotes singleArticle={singleArticle} article_id={article_id}/>
+        <UpdateVotes singleArticle={singleArticle} article_id={article_id} />
       </section>
       <section>
-        {comments.map((comment) => {
-          const newDate = comment.created_at.split("T")[0];
-          return (
-            <ul>
+        <AddNewComment
+          comments={comments}
+          setComments={setComments}
+          article_id={article_id}
+        />
+      </section>
+      <section>
+        <ul>
+          {comments.map((comment) => {
+            const newDate = comment.created_at.split("T")[0];
+            return (
               <li key={comment.comment_id}>
                 <CommentCard
                   author={comment.author}
@@ -51,9 +55,9 @@ export const SingleArticle = () => {
                   created_at={newDate}
                 />
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
       </section>
     </main>
   );
