@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as Api from "../utils/newsApi";
 import { CommentCard } from "./CommentCard";
-
+import { AddNewComment } from "./AddNewComment";
 import { UpdateVotes } from "./UpdateVotes";
 
 export const SingleArticle = () => {
@@ -38,8 +38,10 @@ export const SingleArticle = () => {
         <article>{singleArticle.body}</article>
         <UpdateVotes singleArticle={singleArticle} article_id={article_id}/>
       </section>
+      <section><AddNewComment comments= {comments} setComments = {setComments} article_id ={article_id}/></section>
       <section>
         {comments.map((comment) => {
+       
           const newDate = comment.created_at.split("T")[0];
           return (
             <ul>
