@@ -11,7 +11,6 @@ export const SingleArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
 
-
   useEffect(() => {
     setIsLoading(true);
     Api.getArticlesById(article_id).then(({ article }) => {
@@ -26,8 +25,6 @@ export const SingleArticle = () => {
     });
   }, [article_id]);
 
- 
-
   if (isLoading) return <h3 className="Loading_message">Loading...</h3>;
 
   return (
@@ -36,15 +33,20 @@ export const SingleArticle = () => {
         <h3> {singleArticle.title}</h3>
         <h3 className="Article_author"> {singleArticle.author}</h3>
         <article>{singleArticle.body}</article>
-        <UpdateVotes singleArticle={singleArticle} article_id={article_id}/>
+        <UpdateVotes singleArticle={singleArticle} article_id={article_id} />
       </section>
-      <section><AddNewComment comments= {comments} setComments = {setComments} article_id ={article_id}/></section>
       <section>
-        {comments.map((comment) => {
-       
-          const newDate = comment.created_at.split("T")[0];
-          return (
-            <ul>
+        <AddNewComment
+          comments={comments}
+          setComments={setComments}
+          article_id={article_id}
+        />
+      </section>
+      <section>
+        <ul>
+          {comments.map((comment) => {
+            const newDate = comment.created_at.split("T")[0];
+            return (
               <li key={comment.comment_id}>
                 <CommentCard
                   author={comment.author}
@@ -53,9 +55,9 @@ export const SingleArticle = () => {
                   created_at={newDate}
                 />
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
       </section>
     </main>
   );

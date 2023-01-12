@@ -2,49 +2,63 @@ import { useState } from "react";
 import * as Api from "../utils/newsApi";
 
 export const AddNewComment = ({ article_id, comments, setComments }) => {
-  const [addNewComment, setAddNewComment] = useState({
-    username: "jessjelly",
-    votes: 0,
-    body: "",
-    created_at: "just now",
-  });
-  const [textValue, setTextValue] = useState("");
+
+  const [addNewComment, setAddNewComment] = useState("");
+  const [error, setError] = useState(false);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    setAddNewComment({
-      username: "jessjelly",
-      body: textValue,
-      votes: 0,
-      created_at: "just now",
-    });
-    if (addNewComment.body === "") {
+    if (addNewComment === "") {
       return;
     }
-
-    setComments([addNewComment, ...comments]);
-    Api.postComment(article_id, addNewComment).then(() => {
-     
-      setTextValue("");
-    });
+    setComments([
+      {
+        author: "jessjelly",
+        votes: 0,
+        body: addNewComment,
+        created_at: "just now",
+      },
+      ...comments,
+    ]);
+    e.target.disabled = true;
+    Api.postComment(article_id, addNewComment)
+      .then(() => {
+        setAddNewComment("");
+        e.target.disabled = false;
+      })
+      .catch((err) => {
+        if (err) {
+          setComments(comments);
+          setError(true);
+        }
+      });
   };
 
+  if (error) return <p>Ooops something went wrong, please try again!</p>;
   return (
-    <form onSubmit={handleCommentSubmit}>
+    <form>
       <p>Comment:</p>
       <div className="AddComment_container">
-        <div className="Username_input">
-          <label>UserName</label>
-          <input name="username" defaultValue={addNewComment.username}></input>
+        <div className="Username_box">
+          <p className="Username">UserName: </p>
+          <b>
+            <p>jessjelly</p>
+          </b>
         </div>
         <div className="Comment_input">
           <textarea
             name="body"
-            value={textValue}
-            onChange={(e) => setTextValue(e.target.value)}
+            value={addNewComment}
+            onChange={(e) => setAddNewComment(e.target.value)}
           ></textarea>
         </div>
-        <button className="AddComment_btn">Add</button>
+        <button
+          type="submit"
+          className="AddComment_btn"
+          onClick={handleCommentSubmit}
+        >
+          Add
+        </button>
       </div>
     </form>
   );

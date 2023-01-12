@@ -29,10 +29,10 @@ export const patchVotes = (article_id, increment) => {
   };
   return newsApi.patch(`/api/articles/${article_id}`, patchBody);
 };
-export const postComment = (article_id, addNewComment) => {
+export const postComment = (article_id, body) => {
   const postBody = {
     username: "jessjelly",
-    body: addNewComment.body,
+    body: body ,
   };
 
   return newsApi.post(`/api/articles/${article_id}/comments`, postBody);

@@ -100,3 +100,10 @@ textarea {
 .AddComment_btn {
   width: 100px;
 }
+.Username_box {
+  display: flex;
+  justify-content: center;
+}
+.Username {
+  margin-right: 10px;
+}
