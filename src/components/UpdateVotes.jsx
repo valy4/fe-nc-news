@@ -5,26 +5,29 @@ import { useState } from "react";
 
 export const UpdateVotes = ({ singleArticle, article_id }) => {
   const [upVote, setUpVote] = useState(0);
+  const [error, setError] = useState(false);
 
   const handleLikeClickVote = () => {
     setUpVote((currVote) => currVote + 1);
     Api.patchVotes(article_id, 1).catch((err) => {
-      if(err){
+      if (err) {
         setUpVote((currVote) => currVote - 1);
-        return <p>Failed...</p>
+        setError(true);
       }
-     
     });
   };
 
   const handleDislikeClickVote = () => {
     setUpVote((currVote) => currVote - 1);
     Api.patchVotes(article_id, -1).catch((err) => {
-      if(err){
+      if (err) {
         setUpVote((currVote) => currVote + 1);
-        return <p>Failed...</p>
+        return <p>Failed...</p>;
       }
     });
+  };
+  if (error) {
+    return <p>Failed...</p>;
   }
 
   return (
