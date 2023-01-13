@@ -5,7 +5,7 @@ import { CommentCard } from "./CommentCard";
 import { AddNewComment } from "./AddNewComment";
 import { UpdateVotes } from "./UpdateVotes";
 
-export const SingleArticle = () => {
+export const SingleArticle = ({ singleUser }) => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -35,30 +35,33 @@ export const SingleArticle = () => {
         <article>{singleArticle.body}</article>
         <UpdateVotes singleArticle={singleArticle} article_id={article_id} />
       </section>
-      <section>
-        <AddNewComment
-          comments={comments}
-          setComments={setComments}
-          article_id={article_id}
-        />
-      </section>
-      <section>
-        <ul>
-          {comments.map((comment) => {
-            const newDate = comment.created_at.split("T")[0];
-            return (
-              <li key={comment.comment_id}>
-                <CommentCard
-                  author={comment.author}
-                  body={comment.body}
-                  votes={comment.votes}
-                  created_at={newDate}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+
+      {singleUser.username && (
+        <section>
+          <AddNewComment
+            comments={comments}
+            setComments={setComments}
+            article_id={article_id}
+            singleUser={singleUser}
+          />
+        </section>
+      )}
+
+      <ul>
+        {comments.map((comment) => {
+          const newDate = comment.created_at.split("T")[0];
+          return (
+            <li key={comment.comment_id}>
+              <CommentCard
+                author={comment.author}
+                body={comment.body}
+                votes={comment.votes}
+                created_at={newDate}
+              />
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 };

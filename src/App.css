@@ -112,3 +112,21 @@ textarea {
   font-size: large;
   cursor: pointer;
 }
+.User_card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 250px;
+  margin-right: 50px;
+  justify-content: center;
+}
+.Users_list {
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+.User_img {
+  max-width: 40px;
+}
