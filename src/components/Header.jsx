@@ -1,14 +1,21 @@
-export const Header = ({ topicsList, topics, setTopics }) => {
+import { useNavigate } from "react-router-dom";
 
+export const Header = ({ topicsList, topics }) => {
+  const navigate = useNavigate();
   const handleChange = (e) => {
-    setTopics(e.target.value);
+    navigate(`/topics/${e.target.value}`);
   };
 
   return (
     <header className="App_header">
       <h1>News</h1>
 
-      <select className="Topics" name="topics" value={topics} onChange={handleChange}>
+      <select
+        className="Topics"
+        name="topics"
+        value={topics}
+        onChange={handleChange}
+      >
         <option value="none" defaultValue>
           Topics
         </option>

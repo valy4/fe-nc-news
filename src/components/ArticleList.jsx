@@ -1,42 +1,43 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import * as Api from "../utils/newsApi";
 import { ArticleCard } from "./ArticleCard";
 
-export const ArticleList = ({topics}) => {
+export const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
-console.log(topics)
+  const [isLoading, setIsLoading] = useState(true);
 
+  const { topic } = useParams();
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     Api.getArticles().then(({ articles }) => {
-      if(topics !== ""){
-        setArticleList(articles.filter((article)=> article.topic === topics))
-         }else{
-          setArticleList(articles);
-         }
-      
-      
-      setIsLoading(false)
-    });
-  }, [topics]);
-  
+      if (topic !== "") {
+        setArticleList(articles.filter((article) => article.topic === topic));
+      } else {
+        setArticleList(articles);
+      }
 
-  if(isLoading)return <h3 className="Loading_message">Loading...</h3>
-  
+      setIsLoading(false);
+    });
+  }, [topic]);
+
+  if (isLoading) return <h3 className="Loading_message">Loading...</h3>;
+
   return (
     <main className="Main">
       <h3 className="Votes">Votes</h3>
       <ul>
-      {articleList.map((article) => {
-        return (
-          
+        {articleList.map((article) => {
+          return (
             <li key={article.article_id} className="Article_card_list">
-              <ArticleCard  article_id = {article.article_id} title={article.title} votes={article.votes} />
+              <ArticleCard
+                article_id={article.article_id}
+                title={article.title}
+                votes={article.votes}
+              />
             </li>
-          
-        );
-      })}
+          );
+        })}
       </ul>
     </main>
   );
