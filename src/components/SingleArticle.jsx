@@ -47,23 +47,21 @@ export const SingleArticle = ({ singleUser }) => {
         </section>
       )}
 
-      <section>
-        <ul>
-          {comments.map((comment) => {
-            const newDate = comment.created_at.split("T")[0];
-            return (
-              <li key={comment.comment_id}>
-                <CommentCard
-                  author={comment.author}
-                  body={comment.body}
-                  votes={comment.votes}
-                  created_at={newDate}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <ul>
+        {comments.map((comment) => {
+          const newDate = comment.created_at.split("T")[0];
+          return (
+            <li key={comment.comment_id}>
+              <CommentCard
+                author={comment.author}
+                body={comment.body}
+                votes={comment.votes}
+                created_at={newDate}
+              />
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 };
