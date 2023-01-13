@@ -107,3 +107,8 @@ textarea {
 .Username {
   margin-right: 10px;
 }
+.Topics {
+  width: 10%;
+  font-size: large;
+  cursor: pointer;
+}
