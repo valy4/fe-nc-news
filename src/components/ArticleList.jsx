@@ -8,10 +8,11 @@ export const ArticleList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { topic } = useParams();
+
   useEffect(() => {
     setIsLoading(true);
     Api.getArticles().then(({ articles }) => {
-      if (topic !== "") {
+      if (topic !== undefined) {
         setArticleList(articles.filter((article) => article.topic === topic));
       } else {
         setArticleList(articles);
