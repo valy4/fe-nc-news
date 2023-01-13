@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Header = ({ topicsList, topics }) => {
   const navigate = useNavigate();
@@ -27,6 +28,9 @@ export const Header = ({ topicsList, topics }) => {
           );
         })}
       </select>
+      <Link to="/users">
+        <button>LogIn</button>
+      </Link>
     </header>
   );
 };

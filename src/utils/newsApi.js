@@ -42,3 +42,9 @@ return newsApi.get("/api/topics").then((response) => {
   return response.data
 })
 }
+export const getUsers = () =>{
+  return newsApi.get("/api/users").then((response) => {
+    
+    return response.data
+  })
+}
