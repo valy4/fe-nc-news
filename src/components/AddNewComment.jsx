@@ -1,8 +1,12 @@
 import { useState } from "react";
 import * as Api from "../utils/newsApi";
 
-export const AddNewComment = ({ article_id, comments, setComments }) => {
-
+export const AddNewComment = ({
+  article_id,
+  comments,
+  setComments,
+  singleUser,
+}) => {
   const [addNewComment, setAddNewComment] = useState("");
   const [error, setError] = useState(false);
 
@@ -13,7 +17,7 @@ export const AddNewComment = ({ article_id, comments, setComments }) => {
     }
     setComments([
       {
-        author: "jessjelly",
+        author: singleUser?.username,
         votes: 0,
         body: addNewComment,
         created_at: "just now",
@@ -21,7 +25,7 @@ export const AddNewComment = ({ article_id, comments, setComments }) => {
       ...comments,
     ]);
     e.target.disabled = true;
-    Api.postComment(article_id, addNewComment)
+    Api.postComment(article_id, addNewComment, singleUser?.username)
       .then(() => {
         setAddNewComment("");
         e.target.disabled = false;
@@ -42,7 +46,7 @@ export const AddNewComment = ({ article_id, comments, setComments }) => {
         <div className="Username_box">
           <p className="Username">UserName: </p>
           <b>
-            <p>jessjelly</p>
+            <p>{singleUser?.username}</p>
           </b>
         </div>
         <div className="Comment_input">

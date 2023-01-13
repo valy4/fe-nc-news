@@ -29,9 +29,9 @@ export const patchVotes = (article_id, increment) => {
   };
   return newsApi.patch(`/api/articles/${article_id}`, patchBody);
 };
-export const postComment = (article_id, body) => {
+export const postComment = (article_id, body, singleUser) => {
   const postBody = {
-    username: "jessjelly",
+    username: singleUser,
     body: body ,
   };
 
