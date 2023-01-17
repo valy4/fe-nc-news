@@ -10,7 +10,6 @@ import * as Api from "./utils/newsApi";
 function App() {
   const [topicsList, setTopicsList] = useState([]);
   const [topics, setTopics] = useState("");
-
   const [usersList, setUsersList] = useState([]);
   const [userLogged, setUserLogged] = useState(false);
   const [singleUser, setSingleUser] = useState({});
