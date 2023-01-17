@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 export const Header = ({ topicsList, topics, userLogged, singleUser }) => {
   const navigate = useNavigate();
   const handleChange = (e) => {
-    navigate(`/topics/${e.target.value}`);
+    if (e.target.value !== "none") {
+      navigate(`/topics/${e.target.value}`);
+    } else {
+      navigate(`/`);
+    }
   };
   const handleClick = (e) => {
     e.target.hidden = true;
